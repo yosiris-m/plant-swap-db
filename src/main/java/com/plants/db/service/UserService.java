@@ -43,7 +43,7 @@ public class UserService {
 
         // Encriptar y guardar la nueva contraseña
         String encryptedPassword = passwordEncoder.encode(newPassword);
-        user.setUser_password(encryptedPassword);
+        user.setUserPassword(encryptedPassword);
         userRepository.save(user);
 
         return ResponseEntity.ok("Contraseña actualizada correctamente");

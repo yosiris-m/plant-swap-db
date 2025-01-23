@@ -20,7 +20,7 @@ public class UsersController {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final AuthService authService;
-    private UserService userService;
+    private final UserService userService;
 
     public UsersController(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthService authService, UserService userService) {
         this.userRepository = userRepository;
@@ -33,7 +33,7 @@ public class UsersController {
     public List<Users> getUser() {
         List<Users> user = userRepository.findAll();
         for (Users users : user) {
-            System.out.println("users: " + users.getUsername() + ", Usuario: " + users.getUser_password());
+            System.out.println("users: " + users.getUsername() + ", Usuario: " + users.getUserPassword());
         }
         return user;
     }
@@ -41,8 +41,8 @@ public class UsersController {
     @PostMapping
     public ResponseEntity<Users> addUser(@RequestBody Users user) {
         // Encripta la contraseña antes de guardar
-        String encryptedPassword = passwordEncoder.encode(user.getUser_password());
-        user.setUser_password(encryptedPassword);
+        String encryptedPassword = passwordEncoder.encode(user.getUserPassword());
+        user.setUserPassword(encryptedPassword);
 
         Users savedUser = userRepository.save(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);

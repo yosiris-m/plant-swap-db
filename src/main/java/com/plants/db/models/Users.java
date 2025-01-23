@@ -11,10 +11,17 @@ public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(nullable = false)
     private String username;
-    private String user_password;
+
+    @Column(nullable = false)
+    private String userPassword;
+
+    @Column(nullable = false)
     private String email;
-    private String role_user;
+
+    private String roleUser;
     private boolean enabled;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -35,11 +42,11 @@ public class Users {
         this.username = username;
     }
 
-    public String getUser_password() {
-        return user_password;
+    public String getUserPassword() {
+        return userPassword;
     }
-    public void setUser_password(String user_password) {
-        this.user_password = user_password;
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
     }
 
     public String getEmail() {
@@ -63,11 +70,11 @@ public class Users {
         this.plants = plants;
     }
 
-    public String getRole_user() {
-        return role_user;
+    public String getRoleUser() {
+        return roleUser;
     }
-    public void setRole_user(String role_user) {
-        this.role_user = role_user;
+    public void setRoleUser(String roleUser) {
+        this.roleUser = roleUser;
     }
 
 }

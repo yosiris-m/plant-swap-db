@@ -9,21 +9,21 @@ public class Plants {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String name_plant;
-    private String description_plant;
+    private String namePlant;
+    private String descriptionPlant;
     private String location;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "userId", nullable = false)
     @JsonBackReference
     private Users user;
 
-    public String getDescription_plant() {
-        return description_plant;
+    public String getDescriptionPlant() {
+        return descriptionPlant;
     }
 
-    public void setDescription_plant(String description_plant) {
-        this.description_plant = description_plant;
+    public void setDescriptionPlant(String descriptionPlant) {
+        this.descriptionPlant = descriptionPlant;
     }
 
     public Users getUser() {
@@ -50,11 +50,11 @@ public class Plants {
         this.location = location;
     }
 
-    public String getName_plant() {
-        return name_plant;
+    public String getNamePlant() {
+        return namePlant;
     }
 
-    public void setName_plant(String name) {
-        this.name_plant = name;
+    public void setNamePlant(String name) {
+        this.namePlant = name;
     }
 }

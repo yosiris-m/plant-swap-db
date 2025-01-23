@@ -28,7 +28,7 @@ public class PlantsController {
     public List<Plants> getPlants() {
         List<Plants> plants = plantaRepository.findAll();
         for (Plants plant : plants) {
-            System.out.println("Planta: " + plant.getName_plant() + ", Descripción: " + plant.getDescription_plant());
+            System.out.println("Planta: " + plant.getNamePlant() + ", Descripción: " + plant.getDescriptionPlant());
         }
         return plants;
     }
@@ -69,8 +69,8 @@ public class PlantsController {
         }
 
         // Actualizar solo los campos permitidos
-        existingPlant.setName_plant(plant.getName_plant());
-        existingPlant.setDescription_plant(plant.getDescription_plant());
+        existingPlant.setNamePlant(plant.getNamePlant());
+        existingPlant.setDescriptionPlant(plant.getDescriptionPlant());
         existingPlant.setLocation(plant.getLocation());
 
         // Guardar los cambios
