@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/users")
@@ -52,5 +53,17 @@ public class UsersController {
             @PathVariable int userId,
             @RequestBody UpdatePasswordRequest request) {
         return userService.updatePassword(userId, request);
+    }
+
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<String> deleteUserAccount(@PathVariable int userId) {
+
+        //verifico si el usuario existe
+        Optional<Users> usersOptional = userRepository.findById(userId);
+        if(usersOptional.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario no encontrado");
+        }
+        userRepository.delete(usersOptional.get());
+        return ResponseEntity.ok("Cuenta de usuario y plantas asociadas eliminadas correctament");
     }
 }
