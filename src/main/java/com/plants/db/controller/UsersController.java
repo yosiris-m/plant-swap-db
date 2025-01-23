@@ -1,6 +1,7 @@
 package com.plants.db.controller;
 
 
+import com.plants.db.models.UpdatePasswordRequest;
 import com.plants.db.models.Users;
 import com.plants.db.repository.UserRepository;
 import com.plants.db.service.AuthService;
@@ -44,5 +45,12 @@ public class UsersController {
 
         Users savedUser = userRepository.save(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
+    }
+
+    @PutMapping("/{userId}")
+    public ResponseEntity<String> updatePassword(
+            @PathVariable int userId,
+            @RequestBody UpdatePasswordRequest request) {
+        return userService.updatePassword(userId, request);
     }
 }
